@@ -169,7 +169,13 @@ class _ChewiePlayerState extends State<Chewie> {
       ]);
     }
 
-    await Navigator.of(context).push(route);
+    await Navigator.of(context).push(route).then((_){
+        SystemChrome.restoreSystemUIOverlays().then((_){
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+          ]);
+        });
+    });
 
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setPreferredOrientations([
